@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class DetailPage extends StatefulWidget {
   final Product product;
-  final Set<int> savedHotels;
+  final Set<Product> savedHotels;
 
   DetailPage({Key key, this.product, this.savedHotels}) : super(key: key);
 
@@ -18,7 +18,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   Product product;
-  Set<int> savedHotels;
+  Set<Product> savedHotels;
 
   _DetailPageState(this.product, this.savedHotels);
 
@@ -144,12 +144,12 @@ class _DetailPageState extends State<DetailPage> {
                       child: GestureDetector(
                         onDoubleTap: (){
                           setState(() {
-                            if (savedHotels.contains(product.id)) {
+                            if (savedHotels.contains(product)) {
                               _isFavorited = false;
-                              savedHotels.remove(product.id);
+                              savedHotels.remove(product);
                             } else {
                               _isFavorited = true;
-                              savedHotels.add(product.id);
+                              savedHotels.add(product);
                             }
                           });
                         },
@@ -169,7 +169,7 @@ class _DetailPageState extends State<DetailPage> {
                   child: IconButton(
                     padding: EdgeInsets.all(0),
                     alignment: Alignment.centerRight,
-                    icon: (savedHotels.contains(product.id)
+                    icon: (savedHotels.contains(product)
                         ? Icon(Icons.favorite)
                         : Icon(Icons.favorite_border)),
                     color: Colors.red,
@@ -188,12 +188,12 @@ class _DetailPageState extends State<DetailPage> {
 
   void _toggleFavorite() {
     setState(() {
-      if (savedHotels.contains(product.id)) {
+      if (savedHotels.contains(product)) {
         _isFavorited = false;
-        savedHotels.remove(product.id);
+        savedHotels.remove(product);
       } else {
         _isFavorited = true;
-        savedHotels.add(product.id);
+        savedHotels.add(product);
       }
     });
   }

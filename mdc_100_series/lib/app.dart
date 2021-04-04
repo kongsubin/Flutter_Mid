@@ -14,8 +14,10 @@
 import 'package:flutter/material.dart';
 
 import 'detail.dart';
+import 'favorite.dart';
 import 'home.dart';
 import 'login.dart';
+import 'model/product.dart';
 import 'search.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
@@ -36,6 +38,7 @@ class ShrineApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
         '/detail': (context) => DetailPage(),
+        // '/favorite' : (context) => FavoritePage(argument : Set<Product> savedHotels),
       },
       // TODO: Add a theme (103)
     );

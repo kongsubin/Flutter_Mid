@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Set<int> savedHotels = Set<int>();
+  final Set<Product> savedHotels = Set<Product>();
 
   _launchURL() async {
     const url = 'https://www.handong.edu/';
@@ -51,7 +51,9 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         title == 'Home'
             ? Navigator.pop(context)
-            : Navigator.pushNamed(context, route);
+            : Navigator.pushNamed(context, route,
+          arguments: {'savedHotels': savedHotels}
+        );
       },
     );
   }
@@ -325,7 +327,7 @@ class _HomePageState extends State<HomePage> {
             ),
             _listTitle(context, Icons.home, '/home', 'Home'),
             _listTitle(context, Icons.search, '/search', 'Search'),
-            _listTitle(context, Icons.location_city, '/home', 'Favorite Hotel'),
+            _listTitle(context, Icons.location_city, '/favorite', 'Favorite Hotel'),
             _listTitle(context, Icons.person, '/person', 'My Page'),
           ],
         ),
