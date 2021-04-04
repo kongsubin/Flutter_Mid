@@ -136,7 +136,8 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.fromLTRB(30.0, 3.0, 3.0, 0.0),
-                    child: Row(
+                    child:
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: List.generate(product.stars, (index) {
                         return Icon(Icons.star,

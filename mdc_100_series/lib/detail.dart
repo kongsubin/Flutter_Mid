@@ -101,7 +101,8 @@ class _DetailPageState extends State<DetailPage> {
       ),
     );
 
-    Widget textSection = Container(
+    Widget textSection =
+    Container(
       padding: const EdgeInsets.fromLTRB(30.0, 3.0, 30.0, 3.0),
       child: Text(
         'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
