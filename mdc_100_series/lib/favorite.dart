@@ -5,7 +5,7 @@ import 'model/product.dart';
 
 class FavoritePage extends StatefulWidget {
   static const routeName = '/favorite';
-  final Set<Product> args = ModalRoute.of(context).settings.arguments as Set<Product>;
+  // final Set<Product> args = ModalRoute.of(context).settings.arguments as Set<Product>;
 
   final Set<Product> savedHotels;
   FavoritePage({Key key, this.savedHotels}) : super(key: key);

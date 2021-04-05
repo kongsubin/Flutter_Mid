@@ -141,10 +141,8 @@ class _DetailPageState extends State<DetailPage> {
                         onDoubleTap: (){
                           setState(() {
                             if (savedHotels.contains(product)) {
-                              _isFavorited = false;
                               savedHotels.remove(product);
                             } else {
-                              _isFavorited = true;
                               savedHotels.add(product);
                             }
                           });
@@ -185,10 +183,8 @@ class _DetailPageState extends State<DetailPage> {
   void _toggleFavorite() {
     setState(() {
       if (savedHotels.contains(product)) {
-        _isFavorited = false;
         savedHotels.remove(product);
       } else {
-        _isFavorited = true;
         savedHotels.add(product);
       }
     });
