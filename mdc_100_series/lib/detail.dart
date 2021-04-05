@@ -6,23 +6,23 @@ import 'package:Shrine/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'home.dart';
+
 class DetailPage extends StatefulWidget {
   final Product product;
-  final Set<Product> savedHotels;
 
-  DetailPage({Key key, this.product, this.savedHotels}) : super(key: key);
+  DetailPage({Key key, this.product}) : super(key: key);
 
   @override
-  _DetailPageState createState() => _DetailPageState(product, savedHotels);
+  _DetailPageState createState() => _DetailPageState(product);
 }
 
 class _DetailPageState extends State<DetailPage> {
   Product product;
-  Set<Product> savedHotels;
 
-  _DetailPageState(this.product, this.savedHotels);
+  _DetailPageState(this.product);
 
-  @override
+  @overrideappBar
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final NumberFormat formatter = NumberFormat.simpleCurrency(
@@ -140,10 +140,10 @@ class _DetailPageState extends State<DetailPage> {
                       child: GestureDetector(
                         onDoubleTap: (){
                           setState(() {
-                            if (savedHotels.contains(product)) {
-                              savedHotels.remove(product);
+                            if (HomePage.savedHotels.contains(product)) {
+                              HomePage.savedHotels.remove(product);
                             } else {
-                              savedHotels.add(product);
+                              HomePage.savedHotels.add(product);
                             }
                           });
                         },
@@ -163,7 +163,7 @@ class _DetailPageState extends State<DetailPage> {
                   child: IconButton(
                     padding: EdgeInsets.all(0),
                     alignment: Alignment.centerRight,
-                    icon: (savedHotels.contains(product)
+                    icon: (HomePage.savedHotels.contains(product)
                         ? Icon(Icons.favorite)
                         : Icon(Icons.favorite_border)),
                     color: Colors.red,
@@ -182,10 +182,10 @@ class _DetailPageState extends State<DetailPage> {
 
   void _toggleFavorite() {
     setState(() {
-      if (savedHotels.contains(product)) {
-        savedHotels.remove(product);
+      if (HomePage.savedHotels.contains(product)) {
+        HomePage.savedHotels.remove(product);
       } else {
-        savedHotels.add(product);
+        HomePage.savedHotels.add(product);
       }
     });
   }

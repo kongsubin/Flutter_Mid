@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'home.dart';
 import 'model/product.dart';
 
 class FavoritePage extends StatefulWidget {
-  static const routeName = '/favorite';
-  // final Set<Product> args = ModalRoute.of(context).settings.arguments as Set<Product>;
-
-  final Set<Product> savedHotels;
-  FavoritePage({Key key, this.savedHotels}) : super(key: key);
+  // final Set<Product> args = ModalRoute.of(context).settings.arguments as Set<Product>
 
   @override
-  _FavoritePage createState() => _FavoritePage(savedHotels);
+  _FavoritePage createState() => _FavoritePage();
 }
 
 class _FavoritePage extends State<FavoritePage> {
-  Set<Product> savedHotels;
-  _FavoritePage(this.savedHotels);
-
 
   @override
   Widget build(BuildContext context) {
     final title = 'Dismissing Items';
-    final List<Product> saveHotelList = savedHotels.toList();
+    final List<Product> saveHotelList = HomePage.savedHotels.toList();
     final items = List<Product>.generate(saveHotelList.length, (i) => saveHotelList[i]);
 
     return MaterialApp(
@@ -32,7 +26,16 @@ class _FavoritePage extends State<FavoritePage> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          centerTitle: true,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back, // add custom icons also
+            ),
+          ),
+          title: Text('Favorite Hotels'),
         ),
         body: ListView.builder(
           itemCount: items.length,
@@ -50,7 +53,7 @@ class _FavoritePage extends State<FavoritePage> {
                 // Remove the item from the data source.
                 setState(() {
                   items.removeAt(index);
-                  savedHotels.remove(itemItself);
+                  HomePage.savedHotels.remove(itemItself);
                   saveHotelList.remove(itemItself);
                 });
 

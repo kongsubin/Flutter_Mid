@@ -22,7 +22,6 @@ import 'search.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
 class ShrineApp extends StatelessWidget {
-  final Set<Product> savedHotels = Set<Product>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +35,11 @@ class ShrineApp extends StatelessWidget {
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       routes: {
-        '/home': (context) => HomePage(savedHotels: savedHotels),
+        '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
         '/detail': (context) => DetailPage(),
-        // '/favorite' : (context) => FavoritePage(),
-        // '/favorite': (context) => FavoritePage(savedHotels: savedHotels),
-        FavoritePage.routeName: (context) => FavoritePage(),
+        '/favorite' : (context) => FavoritePage(),
+
       },
       // TODO: Add a theme (103)
     );

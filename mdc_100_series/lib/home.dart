@@ -21,15 +21,13 @@ import 'model/products_repository.dart';
 import 'model/product.dart';
 
 class HomePage extends StatefulWidget {
-  final Set<Product> savedHotels;
-  HomePage({Key key, this.savedHotels}) : super(key: key);
+  static Set<Product> savedHotels = Set<Product>();
+
   @override
-  _HomePageState createState() => _HomePageState(savedHotels);
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Set<Product> savedHotels;
-  _HomePageState(this.savedHotels);
 
   _launchURL() async {
     const url = 'https://www.handong.edu/';
@@ -56,8 +54,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         title == 'Home'
             ? Navigator.pop(context)
-            : Navigator.pushNamed(context, route,
-          arguments: {'savedHotels': savedHotels}
+            : Navigator.pushNamed(context, route
         );
       },
     );
@@ -192,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => DetailPage(product: product, savedHotels: savedHotels),
+                            builder: (_) => DetailPage(product: product),
                           ),
                         ),
                       ),
@@ -285,7 +282,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => DetailPage(product: product, savedHotels: savedHotels),
+                      builder: (_) => DetailPage(product: product),
                     ),
                   ),
                 ),
@@ -332,26 +329,6 @@ class _HomePageState extends State<HomePage> {
             ),
             _listTitle(context, Icons.home, '/home', 'Home'),
             _listTitle(context, Icons.search, '/search', 'Search'),
-            ListTile(
-          contentPadding: EdgeInsets.fromLTRB(30.0, 5.0, 10.0, 0.0),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(Icons.location_city, color: Color(0xFF97BBFF), size: 40.0),
-              SizedBox(width: 40.0),
-              Text('Favorite Hotel'),
-            ],
-          ),
-          onTap: () {
-            // Navigator.of(context).pushNamed('/favorite', arguments: savedHotels);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => FavoritePage(savedHotels: savedHotels),
-              ),
-            );
-          },
-        ),
             _listTitle(context, Icons.location_city, '/favorite', 'Favorite Hotel'),
             _listTitle(context, Icons.person, '/person', 'My Page'),
           ],
