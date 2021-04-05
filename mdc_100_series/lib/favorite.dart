@@ -5,8 +5,9 @@ import 'model/product.dart';
 
 class FavoritePage extends StatefulWidget {
   static const routeName = '/favorite';
-  final Set<Product> savedHotels;
+  final Set<Product> args = ModalRoute.of(context).settings.arguments as Set<Product>;
 
+  final Set<Product> savedHotels;
   FavoritePage({Key key, this.savedHotels}) : super(key: key);
 
   @override
@@ -16,7 +17,6 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePage extends State<FavoritePage> {
   Set<Product> savedHotels;
   _FavoritePage(this.savedHotels);
-
 
 
   @override
@@ -38,6 +38,7 @@ class _FavoritePage extends State<FavoritePage> {
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index].name;
+            final itemItself = items[index];
 
             return Dismissible(
               // Each Dismissible must contain a Key. Keys allow Flutter to
@@ -49,7 +50,8 @@ class _FavoritePage extends State<FavoritePage> {
                 // Remove the item from the data source.
                 setState(() {
                   items.removeAt(index);
-                  savedHotels.remove(items);
+                  savedHotels.remove(itemItself);
+                  saveHotelList.remove(itemItself);
                 });
 
                 // Then show a snackbar.

@@ -22,10 +22,6 @@ class _DetailPageState extends State<DetailPage> {
 
   _DetailPageState(this.product, this.savedHotels);
 
-  bool _isFavorited = false;
-
-  // In the constructor, require a Todo.
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);

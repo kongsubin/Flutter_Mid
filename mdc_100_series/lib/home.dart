@@ -16,16 +16,20 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'detail.dart';
+import 'favorite.dart';
 import 'model/products_repository.dart';
 import 'model/product.dart';
 
 class HomePage extends StatefulWidget {
+  final Set<Product> savedHotels;
+  HomePage({Key key, this.savedHotels}) : super(key: key);
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState(savedHotels);
 }
 
 class _HomePageState extends State<HomePage> {
-  final Set<Product> savedHotels = Set<Product>();
+  Set<Product> savedHotels;
+  _HomePageState(this.savedHotels);
 
   _launchURL() async {
     const url = 'https://www.handong.edu/';
@@ -38,7 +42,8 @@ class _HomePageState extends State<HomePage> {
 
   ListTile _listTitle(
       BuildContext context, IconData icon, String route, String title) {
-    return ListTile(
+    return
+      ListTile(
       contentPadding: EdgeInsets.fromLTRB(30.0, 5.0, 10.0, 0.0),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -59,7 +64,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   final isSelected = <bool>[false, true];
-
   ToggleButtons _toggleButtons() {
     return ToggleButtons(
       color: Colors.black.withOpacity(0.60),
@@ -184,7 +188,8 @@ class _HomePageState extends State<HomePage> {
                         Text('more',
                             textAlign: TextAlign.right,
                             style: TextStyle(color: Color(0xFF97BBFF))),
-                        onTap: () => Navigator.push(
+                        onTap: () =>
+                            Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (_) => DetailPage(product: product, savedHotels: savedHotels),
@@ -327,6 +332,26 @@ class _HomePageState extends State<HomePage> {
             ),
             _listTitle(context, Icons.home, '/home', 'Home'),
             _listTitle(context, Icons.search, '/search', 'Search'),
+            ListTile(
+          contentPadding: EdgeInsets.fromLTRB(30.0, 5.0, 10.0, 0.0),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.location_city, color: Color(0xFF97BBFF), size: 40.0),
+              SizedBox(width: 40.0),
+              Text('Favorite Hotel'),
+            ],
+          ),
+          onTap: () {
+            // Navigator.of(context).pushNamed('/favorite', arguments: savedHotels);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => FavoritePage(savedHotels: savedHotels),
+              ),
+            );
+          },
+        ),
             _listTitle(context, Icons.location_city, '/favorite', 'Favorite Hotel'),
             _listTitle(context, Icons.person, '/person', 'My Page'),
           ],
