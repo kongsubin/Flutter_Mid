@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import 'package:Shrine/profile.dart';
 import 'package:flutter/material.dart';
 
 import 'detail.dart';
@@ -39,7 +40,7 @@ class ShrineApp extends StatelessWidget {
         '/search': (context) => SearchPage(),
         '/detail': (context) => DetailPage(),
         '/favorite' : (context) => FavoritePage(),
-
+        '/profile' : (context) => ProfilePage(),
       },
       // TODO: Add a theme (103)
     );

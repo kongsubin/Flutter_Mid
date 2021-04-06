@@ -330,7 +330,7 @@ class _HomePageState extends State<HomePage> {
             _listTitle(context, Icons.home, '/home', 'Home'),
             _listTitle(context, Icons.search, '/search', 'Search'),
             _listTitle(context, Icons.location_city, '/favorite', 'Favorite Hotel'),
-            _listTitle(context, Icons.person, '/person', 'My Page'),
+            _listTitle(context, Icons.person, '/profile', 'My Page'),
           ],
         ),
       ),
@@ -357,7 +357,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: OrientationBuilder(
+      body:
+      OrientationBuilder(
         builder: (context, orientation) {
           return new Column(
             children: <Widget>[

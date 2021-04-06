@@ -22,7 +22,7 @@ class _DetailPageState extends State<DetailPage> {
 
   _DetailPageState(this.product);
 
-  @overrideappBar
+  @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final NumberFormat formatter = NumberFormat.simpleCurrency(
@@ -147,7 +147,8 @@ class _DetailPageState extends State<DetailPage> {
                             }
                           });
                         },
-                        child: Image.asset(
+                        child:
+                        Image.asset(
                           product.assetName,
                           package: product.assetPackage,
                           width: 600,
